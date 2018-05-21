@@ -1,16 +1,33 @@
 <?php
 /*
-Plugin Name: WooCommerce iSwipe Gateway
+Plugin Name: iswipe payment gateway
 Plugin URI: https://iswipe.net
 Description: Extends WooCommerce with an iSwipe gateway.
 Version: 1.01
 Author: Clic Technology Corp.
 Author URI: https://iswipe.net
+
+
+Copyright 2018  Denis Kosolap  (email: denis.k@iswipe.net)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined( 'ABSPATH' )) exit; // Exit if accessed directly
 
-add_action('plugins_loaded', 'init_iswipe_Payment_Gateway', 0);
+add_action('plugins_loaded', 'init_iswipe_Payment_Gateway', 20);
 function init_iswipe_Payment_Gateway() {
 
     if(!class_exists('WC_Payment_Gateway')) return;
@@ -95,7 +112,7 @@ function init_iswipe_Payment_Gateway() {
         }
 
         public function receipt_page($order) {
-            echo '<p>' . __('Thank you for your order, please click the button below to pay.', 'woocommerce') . '</p>';
+            echo '<p>' . __('Thank you for your order, please click the button below to pay.', 'iswipe_payment') . '</p>';
             echo $this->generate_form($order);
         }
 
@@ -104,7 +121,7 @@ function init_iswipe_Payment_Gateway() {
             global $woocommerce;
 
             // Mark as on-hold (we're awaiting the payment)
-            $order->update_status('on-hold', __( 'Awaiting payment response', 'woocommerce' ));
+            $order->update_status('on-hold', __( 'Awaiting payment response', 'iswipe_payment' ));
 
             // Remove cart
             $woocommerce->cart->empty_cart();
@@ -122,7 +139,7 @@ function init_iswipe_Payment_Gateway() {
                 '<div class="uswipe-badge" id="uswipe-badge">' .
                 '</div>' .
                 '</div>' .
-                '<a href="#" class="btn btn-md btn-primary btn-buy" id="btn-buy">buy</a>' .
+                '<a href="#" class="btn btn-md btn-primary btn-buy" id="btn-buy">' . _e('buy', 'iswipe_payment') . '</a>' .
                 '<script>' .
                 'jQuery(document).ready(function() {' .
                 'var btn = document.getElementById("btn-buy");' .
@@ -144,7 +161,7 @@ function init_iswipe_Payment_Gateway() {
                 'var uswipe = UswipeWidget({' .
                 'amount:' . $args["amount"] .',' .
                 'currency:"' . $args["currency"] . '"' .
-                //'orderId:' . $args["order"] .
+                'orderId:' . $args["order"] .
                 '}, "uswipe-badge")("' . $args["public_api_key"] . '");' .
                 'uswipe.addListener("success", function () {' .
                 'document.querySelector(".info").innerHTML = "Thank you for choosing our shop! Check your order status!"' .
