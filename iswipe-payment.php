@@ -41,12 +41,13 @@ function init_iswipe_Payment_Gateway() {
              */
             wp_register_style('iswipe-style', plugins_url( 'iswipe-style.css', __FILE__ ), array(), null);
             wp_enqueue_style('iswipe-style');
-            wp_enqueue_script('bandge', 'https://widget.iswipe.net/checkout/widget.js', array('jquery'), null);
+            //wp_enqueue_script('bandge', 'https://widget.iswipe.net/checkout/widget.js', array('jquery'), null);
+            wp_enqueue_script('bandge', 'https://widget-test.iswipe.net/checkout/widget.js', array('jquery'), null);
 
             $this->id                 = 'iswipe';
             $this->has_fields         = false;
-            $this->method_title       = 'iSwipe Gataway';
-            $this->method_description = 'iSwipe Gataway';
+            $this->method_title       = 'iSwipe Gateway';
+            $this->method_description = 'iSwipe Gateway';
             $this->icon               = apply_filters('woocommerce_iswipe_icon', plugins_url( 'iswipe.svg', __FILE__ ));
             $this->init_form_fields();
             $this->init_settings();
@@ -77,7 +78,7 @@ function init_iswipe_Payment_Gateway() {
                     'title'       => __( 'Title', 'iswipe_payment' ),
                     'type'        => 'text',
                     'description' => __( 'The title that appears on the checkout page', 'iswipe_payment' ),
-                    'default'     => 'iSwipe Gataway',
+                    'default'     => 'iSwipe Gateway',
                     'desc_tip'    => true,
                 ),
                 'description'     => array(
@@ -139,7 +140,7 @@ function init_iswipe_Payment_Gateway() {
                 '<div class="uswipe-badge" id="uswipe-badge">' .
                 '</div>' .
                 '</div>' .
-                '<a href="#" class="btn btn-md btn-primary btn-buy" id="btn-buy">' . _e('buy', 'iswipe_payment') . '</a>' .
+                '<a href="#" class="btn btn-md btn-primary btn-buy" id="btn-buy">' . __('buy', 'iswipe_payment') . '</a>' .
                 '<script>' .
                 'jQuery(document).ready(function() {' .
                 'var btn = document.getElementById("btn-buy");' .
@@ -160,8 +161,8 @@ function init_iswipe_Payment_Gateway() {
                 'function buttonClick() {' .
                 'var uswipe = UswipeWidget({' .
                 'amount:' . $args["amount"] .',' .
-                'currency:"' . $args["currency"] . '"' .
-                'orderId:' . $args["order"] .
+                'currency:"' . $args["currency"] . '",' .
+                'orderId:"' . $args["order"] . '"' .
                 '}, "uswipe-badge")("' . $args["public_api_key"] . '");' .
                 'uswipe.addListener("success", function () {' .
                 'document.querySelector(".info").innerHTML = "Thank you for choosing our shop! Check your order status!"' .
@@ -207,9 +208,11 @@ function init_iswipe_Payment_Gateway() {
 
 }
 
-add_action('plugins_loaded', 'iswipe_payment_load_textdomain');
-function iswipe_payment_load_textdomain() {
-    load_plugin_textdomain( 'iswipe-payment', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
+add_filter( 'load_textdomain_mofile', 'load_custom_plugin_translation_file', 10, 2 );
+function load_custom_plugin_translation_file( $mofile, $domain ) {
+    $mofile = plugin_dir_url( __FILE__ ) . 'languages/iswipe-payment-' . get_locale() . '.mo';
+    return $mofile;
 }
 
 add_filter( 'woocommerce_payment_gateways', 'add_WC_iswipe_Payment_Gateway' );
