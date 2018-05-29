@@ -29,5 +29,16 @@ div[class^="uswipe-widget"] button {
     border-radius: 0;
 }
 #payment li.payment_method_iswipe label[for*="iswipe"] img {
-    min-width: 200px;
+    max-width: 4em;
+}
+#btn-buy {
+    padding: 10px 20px;
+    background-color: deepskyblue;
+    -webkit-transition: all ease .3s;
+    -o-transition: all ease .3s;
+    -moz-transition: all ease .3s;
+    transition: all ease .3s;
+}
+#btn-buy:hover {
+    background-color: #55eac0;
 }
