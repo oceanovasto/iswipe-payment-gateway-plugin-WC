@@ -27,6 +27,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if (!defined( 'ABSPATH' )) exit; // Exit if accessed directly
 
+// define iSwipe auth header
+define('AUTHHEADER', 'iSwipe-Authorization');
+
 add_action('plugins_loaded', 'init_iswipe_Payment_Gateway', 20);
 function init_iswipe_Payment_Gateway() {
 
@@ -179,26 +182,29 @@ function init_iswipe_Payment_Gateway() {
          * When we have a payment`s response
          */
         function check_ipn_response(){
+	
+            $requestHeaders = getallheaders();
 
-            // Get the Private api key from response
-            $private_api_key_request = $_SERVER['HTTP_ISWIPE_AUTHORIZATION'] ? $_SERVER['HTTP_ISWIPE_AUTHORIZATION'] : '';
+            if (!isset($requestHeaders[AUTHHEADER])) {
+                wp_die( 'Access denied!');
+            }
 
             // Get the Private api key from db
             $private_api_key_client = $this->get_option('private_api_key');
 
+            if ($private_api_key_client !== $requestHeaders[AUTHHEADER]) {
+                wp_die( 'Access denied!');
+            }
+
             // Get orderId and order status
             $request = json_decode(file_get_contents('php://input'), true);
-            $response_order_id = +$request['orderId'];
-            $response_order_status = $request['status'] === 'success' ? 'processing' : 'cancelled';
+            $response_order_id = $request['orderId'] ? (int)$request['orderId'] : 0;
+            $response_order_status = $request['status'] ? ($request['status'] === 'success' ? 'processing' : 'cancelled') : '';
 
-            if (isset($request['orderId']) && $request['orderId'] !== '' && isset($request['status']) // check response data
-                && $request['status'] !== '' && $private_api_key_request && $private_api_key_client
-                && $private_api_key_request === $private_api_key_client) {
-
+            if ($response_order_id > 0 && $response_order_status !== '' && $response_order_status === 'processing') {
                 $order = new WC_Order($response_order_id);
                 $order->update_status($response_order_status);
                 $order->add_order_note( __('Order status: ', 'iswipe_payment') . $response_order_status );
-
             } else {
                 wp_die('IPN request failed!');
             }
