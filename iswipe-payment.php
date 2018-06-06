@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 if (!defined( 'ABSPATH' )) exit; // Exit if accessed directly
 
 // define iSwipe auth header
-define('AUTHHEADER', 'iSwipe-Authorization');
+define('AUTHHEADER', 'Iswipe-Authorization');
 
 add_action('plugins_loaded', 'init_iswipe_Payment_Gateway', 20);
 function init_iswipe_Payment_Gateway() {
@@ -44,8 +44,7 @@ function init_iswipe_Payment_Gateway() {
              */
             wp_register_style('iswipe-style', plugins_url( 'iswipe-style.css', __FILE__ ), array(), null);
             wp_enqueue_style('iswipe-style');
-            //wp_enqueue_script('bandge', 'https://widget.iswipe.net/checkout/widget.js', array('jquery'), null);
-            wp_enqueue_script('bandge', 'https://widget-test.iswipe.net/checkout/widget.js', array('jquery'), null);
+            wp_enqueue_script('bandge', 'https://widget.iswipe.net/checkout/widget.js', array('jquery'), null);
 
             $this->id                 = 'iswipe';
             $this->has_fields         = false;
@@ -182,7 +181,7 @@ function init_iswipe_Payment_Gateway() {
          * When we have a payment`s response
          */
         function check_ipn_response(){
-	
+
             $requestHeaders = getallheaders();
 
             if (!isset($requestHeaders[AUTHHEADER])) {
@@ -201,10 +200,13 @@ function init_iswipe_Payment_Gateway() {
             $response_order_id = $request['orderId'] ? (int)$request['orderId'] : 0;
             $response_order_status = $request['status'] ? ($request['status'] === 'success' ? 'processing' : 'cancelled') : '';
 
-            if ($response_order_id > 0 && $response_order_status !== '' && $response_order_status === 'processing') {
+            if ($response_order_id > 0 && $response_order_status !== '') {
                 $order = new WC_Order($response_order_id);
                 $order->update_status($response_order_status);
                 $order->add_order_note( __('Order status: ', 'iswipe_payment') . $response_order_status );
+
+                $response = array('status' => $response_order_status === 'processing');
+                die(json_encode($response));
             } else {
                 wp_die('IPN request failed!');
             }
