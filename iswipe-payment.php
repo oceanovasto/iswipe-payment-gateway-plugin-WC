@@ -197,10 +197,11 @@ function init_iswipe_Payment_Gateway() {
 
             // Get orderId and order status
             $request = json_decode(file_get_contents('php://input'), true);
-            $response_order_id = $request['orderId'] ? (int)$request['orderId'] : 0;
+            $response_order_id = $request['orderId'] ? (int)$request['orderId'] : '';
             $response_order_status = $request['status'] ? ($request['status'] === 'success' ? 'processing' : 'cancelled') : '';
 
-            if ($response_order_id > 0 && $response_order_status !== '') {
+
+            if ($response_order_status !== '') {
                 $order = new WC_Order($response_order_id);
                 $order->update_status($response_order_status);
                 $order->add_order_note( __('Order status: ', 'iswipe_payment') . $response_order_status );
