@@ -5,7 +5,7 @@ Plugin URI: https://iswipe.net
 Description: Extends WooCommerce with an iSwipe gateway.
 Version: 1.01
 Author: Clic Technology Corp.
-Author URI: https://iswipe.net
+Author URI: https://www.clictechnology.com/
 
 
 Copyright 2018  Denis Kosolap  (email: denis.k@iswipe.net)
