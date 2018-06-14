@@ -6,7 +6,7 @@ Tags: cryptocurrency payment gateway, crypto payments, automatic cryptocurrency 
   low commission, biometrics service, smooth withdrawals
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.0
+Stable tag: 1.1.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -17,27 +17,75 @@ iSwipe is a cryptocurrency payment gateway with an instant and automatic convers
 
 == Description ==
 
-iSwipe is  a cryptocurrency payment gateway with an instant and automatic conversion of cryptocurrencies into Euro/USD,
- easy integration, 24/7 live support and smooth withdrawals. It supports 11 cryptocurrencies, and their number is
-  constantly being expanded. The process of creating a merchant account is quick and free. It requires only an email and
-   a password without any verification. Multimodal (face, eye and voice) Biometrics Service for verification and
-    identification process gives the opportunity to sign in and make payments with no annoying passwords or CAPTCHAs.
-     All transactions are safe and secure as they are done over SSL secured endpoints. Iswipe provides 0.9% commission
-      for payments and 0% exchange fees.
+iSwipe is a cryptocurrency payment gateway with an instant and automatic conversion of cryptocurrencies into Euro/USD,
+ easy integration, 24/7 live support and smooth withdrawals. 0% volatility is guaranteed. It supports a wide range of
+  cryptocurrencies, and their number is constantly being expanded. The process of creating a merchant account is quick
+   and free. It requires only an email and a password without any verification. Multimodal (face, eye and voice)
+    Biometrics Service for verification and identification process gives the opportunity to sign in and make payments
+     with no annoying passwords or CAPTCHAs. All transactions are safe and secure as they are done over SSL secured
+      endpoints. Iswipe provides 0.9% commission for payments and 0% exchange fees.
+
+= iSwipe benefits: =
+ - one-click payments
+ - crypto payments with instant exchange into fiat at direct currency rates
+ - only 0.9% processing fee for payment
+ - no personal information is shared
+ - 24/7 live technical support
+ - zero volatility guarantee
+ - free EU IBAN if needed
+ - free of charge merchant branded wallet
+ - a wide range of supported cryptocurrencies
+ - high level of safety over SSL secure endpoints
+ - simple and easy checkout solution
+ - accessible with any device, anywhere and anytime
+ - Biometrics Service for verification and identification
+ - smooth and quick integration
+ - publicly traded company
 
 == Installation ==
 
-1. Activate the plugin through the 'Plugins' screen in WordPress
-2. Go to https://www.iswipe.net/, create an account and get a pair API keys (Private API key and Public API key).
-3. Use the Woocommerce->Settings->payments->iswipe screen to configure the plugin (add Private API key and Public API key).
+= Minimum Requirements =
 
+* WordPress 4.6 or greater
+* PHP version 5.6 or greater
 
-== Frequently Asked Questions ==
+= Automatic installation =
 
+1. Go to administrative panel of your shop.
+2. In the menu on the left choose the tab “Plugins”, then press “Add a New Plugin”.
+3. Type into the search bar “iSwipe” - the plugin will appear at the top of the results list.
+4. Press the button “Install”.
+5. After the end of installation press the button “Activate”.
+6. On the tab WooCommerce go to “Settings”  -> “Payments”, in the list of available payment methods choose
+ “iSwipe Payment” and go to payment method editing page “iSwipe Payment”.
+7. Copy the field value “URL for Server Response”.
+8. After registering on the site www.iswipe.net you receive Public API Key and Secret API Key which are necessary for
+ the plugin work. These keys are stored on your personal page in the section “Account” (on the site www.iswipe.net) on
+  the tab “API Keys”. On this tab in the field “Your URL” it is also necessary to insert the field value “URL for the
+   Server Response” which you have copied on the previous step.
+9. Copy Public API Key and Secret API Key into the corresponding fields in the module settings “iSwipe Payment” -> Save
+
+= Manual installation =
+
+1. The manual installation method involves downloading our plugin and uploading it to your webserver via your favorite FTP
+ application. The WordPress codex contains [instructions on how to do this here](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation).
+2. After the end of installation press the button “Activate”.
+3. On the tab WooCommerce go to “Settings”  -> “Payments”, in the list of available payment methods choose
+ “iSwipe Payment” and go to payment method editing page “iSwipe Payment”.
+4. Copy the field value “URL for Server Response”.
+5. After registering on the site www.iswipe.net you receive Public API Key and Secret API Key which are necessary for
+ the plugin work. These keys are stored on your personal page in the section “Account” (on the site www.iswipe.net) on
+  the tab “API Keys”. On this tab in the field “Your URL” it is also necessary to insert the field value “URL for the
+   Server Response” which you have copied on the previous step.
+6. Copy Public API Key and Secret API Key into the corresponding fields in the module settings “iSwipe Payment” -> Save
 
 == Screenshots ==
 
-1. This screen shot description corresponds to plugin_settings.png
+1. search_plugin
+2. woocommerce_settings
+3. payment_gateways_list
+4. iswipe_payment_settings
+5. dashboard_iswipe
 
 == Changelog ==
 
@@ -45,36 +93,18 @@ iSwipe is  a cryptocurrency payment gateway with an instant and automatic conver
 
 * Create plugin
 
+= 1.1.0 =
+
+* Add "Response server URL" field
+
 == Upgrade Notice ==
 
 = 1.0 =
 
 * no upgrade yet
 
+= 1.1.0 =
+
+* Add "Response server URL" field
+
 == Arbitrary section ==
-
-
-== A brief Markdown Example ==
-
-Ordered list:
-
-1. Some feature
-1. Another feature
-1. Something else about the plugin
-
-Unordered list:
-
-* something
-* something else
-* third thing
-
-Here's a link to [WordPress](http://wordpress.org/ "Your favorite software") and one to [Markdown's Syntax Documentation][markdown syntax].
-Titles are optional, naturally.
-
-[markdown syntax]: http://daringfireball.net/projects/markdown/syntax
-            "Markdown is what the parser uses to process much of the readme file"
-
-Markdown uses email style notation for blockquotes and I've been told:
-> Asterisks for *emphasis*. Double it up  for **strong**.
-
-`<?php code(); // goes in backticks ?>`

@@ -45,6 +45,7 @@ function init_iswipe_Payment_Gateway() {
             wp_register_style('iswipe-style', plugins_url( 'iswipe-style.css', __FILE__ ), array(), null);
             wp_enqueue_style('iswipe-style');
             wp_enqueue_script('bandge', 'https://widget.iswipe.net/checkout/widget.js', array('jquery'), null);
+            wp_enqueue_script('iswipe-script', plugins_url( 'iswipe-script.js', __FILE__ ), array('jquery'), null);
 
             $this->id                 = 'iswipe';
             $this->has_fields         = false;
@@ -88,6 +89,12 @@ function init_iswipe_Payment_Gateway() {
                     'type'        => 'textarea',
                     'description' => __( 'The description that appears during the payment method selection process', 'iswipe_payment' ),
                     'default'     => __( 'Pay through the payment gateway iSwipe', 'iswipe_payment' ),
+                ),
+                'listen_url'      => array(
+                    'title'       => 'Response server URL', 'iswipe_payment',
+                    'type'        => 'text',
+                    'description' => 'Copy this url to "Listen url" field on dashboard.iswipe.net', 'iswipe_payment',
+                    'default'     => get_site_url() . '/wc-api/wc_iswipe_payment_gateway/'
                 ),
                 'public_api_key'  => array(
                     'title'       => __( 'Public API Key', 'iswipe_payment' ),
