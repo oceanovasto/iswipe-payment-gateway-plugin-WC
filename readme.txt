@@ -6,7 +6,7 @@ Tags: cryptocurrency payment gateway, crypto payments, automatic cryptocurrency 
   low commission, biometrics service, smooth withdrawals
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -97,6 +97,10 @@ iSwipe is a cryptocurrency payment gateway with an instant and automatic convers
 
 * Add "Response server URL" field
 
+= 1.2.0 =
+
+* Added check of the amount of the order with the amount of payment
+
 == Upgrade Notice ==
 
 = 1.0 =
@@ -106,5 +110,9 @@ iSwipe is a cryptocurrency payment gateway with an instant and automatic convers
 = 1.1.0 =
 
 * Add "Response server URL" field
+
+= 1.2.0 =
+
+* Added check of the amount of the order with the amount of payment
 
 == Arbitrary section ==

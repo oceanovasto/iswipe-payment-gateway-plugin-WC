@@ -3,8 +3,8 @@
 Plugin Name: iswipe payment gateway
 Plugin URI: https://iswipe.net
 Description: Extends WooCommerce with an iSwipe gateway.
-Version: 1.01
-Author: Clic Technology Corp.
+Version: 1.2.0
+Author: Clic Technology Inc.
 Author URI: https://www.clictechnology.com/
 
 
@@ -206,24 +206,29 @@ function init_iswipe_Payment_Gateway() {
             $request = json_decode(file_get_contents('php://input'), true);
             $response_order_id = $request['orderId'] ? (int)$request['orderId'] : '';
             $response_order_status = $request['status'] ? ($request['status'] === 'success' ? 'processing' : 'cancelled') : '';
+            $response_order_amount = $request['amount'] ? $request['amount'] : '';
 
-
-            if ($response_order_status !== '') {
+            if ($response_order_status !== '' && $response_order_amount !== '') {
                 $order = new WC_Order($response_order_id);
-                $order->update_status($response_order_status);
-                $order->add_order_note( __('Order status: ', 'iswipe_payment') . $response_order_status );
 
-                $response = array('status' => $response_order_status === 'processing');
+                if (floatval($order->total) === $response_order_amount) {
+                    $order->update_status($response_order_status);
+                    $order->add_order_note( __('Order status: ', 'iswipe_payment') . $response_order_status );
+
+                    $response = array('status' => $response_order_status === 'processing');
+                } else {
+                    $order->update_status('failed');
+                    $order->add_order_note( __('Order status: ', 'iswipe_payment') . 'failed. Insufficient funds.' );
+
+                    $response = array('status' => false, 'reason' => 'insufficient_funds');
+                }
                 die(json_encode($response));
             } else {
                 wp_die('IPN request failed!');
             }
         }
-
     }
-
 }
-
 
 add_filter( 'load_textdomain_mofile', 'load_custom_plugin_translation_file', 10, 2 );
 function load_custom_plugin_translation_file( $mofile, $domain ) {
