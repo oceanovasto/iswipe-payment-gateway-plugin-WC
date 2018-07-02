@@ -81,14 +81,14 @@ function init_iswipe_Payment_Gateway() {
                     'title'       => __( 'Title', 'iswipe_payment' ),
                     'type'        => 'text',
                     'description' => __( 'The title that appears on the checkout page', 'iswipe_payment' ),
-                    'default'     => 'iSwipe Gateway',
+                    'default'     => 'iSwipe payment',
                     'desc_tip'    => true,
                 ),
                 'description'     => array(
                     'title'       => __( 'Description', 'iswipe_payment' ),
                     'type'        => 'textarea',
                     'description' => __( 'The description that appears during the payment method selection process', 'iswipe_payment' ),
-                    'default'     => __( 'Pay through the payment gateway iSwipe', 'iswipe_payment' ),
+                    'default'     => __( 'Pay through the iSwipe payment', 'iswipe_payment' ),
                 ),
                 'listen_url'      => array(
                     'title'       => 'Response server URL', 'iswipe_payment',
