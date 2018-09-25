@@ -211,7 +211,7 @@ function init_iswipe_Payment_Gateway() {
             if ($response_order_status !== '' && $response_order_amount !== '') {
                 $order = new WC_Order($response_order_id);
 
-                if (floatval($order->total) === $response_order_amount) {
+                if (floatval($order->total) <= $response_order_amount) {
                     $order->update_status($response_order_status);
                     $order->add_order_note( __('Order status: ', 'iswipe_payment') . $response_order_status );
 
