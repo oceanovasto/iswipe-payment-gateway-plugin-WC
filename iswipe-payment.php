@@ -44,7 +44,7 @@ function init_iswipe_Payment_Gateway() {
              */
             wp_register_style('iswipe-style', plugins_url( 'iswipe-style.css', __FILE__ ), array(), null);
             wp_enqueue_style('iswipe-style');
-            wp_enqueue_script('bandge', 'http://widget.iswipe.loc/checkout/badge.js', array('jquery'), null);
+            wp_enqueue_script('bandge', 'https://widget.iswipe.net/checkout/badge.js', array('jquery'), null);
             wp_enqueue_script('iswipe-script', plugins_url( 'iswipe-script.js', __FILE__ ), array('jquery'), null);
 
             $this->id                 = 'iswipe';
