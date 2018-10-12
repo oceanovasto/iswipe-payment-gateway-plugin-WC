@@ -44,7 +44,7 @@ function init_iswipe_Payment_Gateway() {
              */
             wp_register_style('iswipe-style', plugins_url( 'iswipe-style.css', __FILE__ ), array(), null);
             wp_enqueue_style('iswipe-style');
-            wp_enqueue_script('bandge', 'https://widget.iswipe.net/checkout/widget.js', array('jquery'), null);
+            wp_enqueue_script('bandge', 'http://widget.iswipe.loc/checkout/badge.js', array('jquery'), null);
             wp_enqueue_script('iswipe-script', plugins_url( 'iswipe-script.js', __FILE__ ), array('jquery'), null);
 
             $this->id                 = 'iswipe';
@@ -146,12 +146,14 @@ function init_iswipe_Payment_Gateway() {
             );
 
             return '<div id="modal">' .
+                '<a href="#" class="btn" id="btn-close">' . __('✖') . '</a>' .
                 '<div class="uswipe-badge" id="uswipe-badge">' .
                 '</div>' .
                 '</div>' .
                 '<a href="#" class="btn btn-md btn-primary btn-buy" id="btn-buy">' . __('buy', 'iswipe_payment') . '</a>' .
                 '<script>' .
                 'jQuery(document).ready(function() {' .
+                'var btn_close = document.getElementById("btn-close");' .
                 'var btn = document.getElementById("btn-buy");' .
                 'var modal = document.getElementById("modal");' .
                 'var modal_widget = document.getElementById("uswipe-badge");' .
@@ -160,10 +162,8 @@ function init_iswipe_Payment_Gateway() {
                 'modal.style.background = "#0000007a";' .
                 'modal.style.display = "block";' .
                 '};' .
-                'window.onclick = function(event) {' .
-                'if (event.target == modal_widget) {' .
+                'btn_close.onclick = function(event) {' .
                 'modal.style.display = "none";' .
-                '}' .
                 '}' .
                 '});' .
                 'document.querySelector(".btn-buy").addEventListener("click", buttonClick);' .
