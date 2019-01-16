@@ -42,3 +42,10 @@ div[class^="clic-widget"] button {
 #btn-buy:hover {
     background-color: #55eac0;
 }
+#btn-close {
+    position: absolute;
+    font-size: 48px;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+}

@@ -146,12 +146,14 @@ function init_clic_Payment_Gateway() {
             );
 
             return '<div id="modal">' .
+                '<a href="#" class="btn" id="btn-close">' . __('✖') . '</a>' .
                 '<div class="clic-badge" id="clic-badge">' .
                 '</div>' .
                 '</div>' .
                 '<a href="#" class="btn btn-md btn-primary btn-buy" id="btn-buy">' . __('buy', 'clic_payment') . '</a>' .
                 '<script>' .
                 'jQuery(document).ready(function() {' .
+                'var btn_close = document.getElementById("btn-close");' .
                 'var btn = document.getElementById("btn-buy");' .
                 'var modal = document.getElementById("modal");' .
                 'var modal_widget = document.getElementById("clic-badge");' .
@@ -160,10 +162,8 @@ function init_clic_Payment_Gateway() {
                 'modal.style.background = "#0000007a";' .
                 'modal.style.display = "block";' .
                 '};' .
-                'window.onclick = function(event) {' .
-                'if (event.target == modal_widget) {' .
+                'btn_close.onclick = function(event) {' .
                 'modal.style.display = "none";' .
-                '}' .
                 '}' .
                 '});' .
                 'document.querySelector(".btn-buy").addEventListener("click", buttonClick);' .
@@ -211,7 +211,7 @@ function init_clic_Payment_Gateway() {
             if ($response_order_status !== '' && $response_order_amount !== '') {
                 $order = new WC_Order($response_order_id);
 
-                if (floatval($order->total) === $response_order_amount) {
+                if (floatval($order->total) <= $response_order_amount) {
                     $order->update_status($response_order_status);
                     $order->add_order_note( __('Order status: ', 'clic_payment') . $response_order_status );
 
