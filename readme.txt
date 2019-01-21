@@ -1,5 +1,5 @@
-=== iswipe payment gateway ===
-Contributors: bestkid
+=== Сlic payment gateway ===
+Contributors: clictechnology
 Donate link: https://clictechnology.com/
 Tags: cryptocurrency payment gateway, crypto payments, automatic cryptocurrency exchange, bitcoin, bitcoin cash, dash,
  ethereum, ethereum classic, litecoin, monero, ripple, zcash, zcash classic, zcoin, euro, usd, fiat payouts, free account,
@@ -11,7 +11,7 @@ Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Clic is a cryptocurrency payment gateway with an instant and automatic conversion of a wide
+Clic payment is a cryptocurrency payment gateway with an instant and automatic conversion of a wide
  range of cryptocurrencies into Euro/USD.
 
 
@@ -81,11 +81,9 @@ Clic is a cryptocurrency payment gateway with an instant and automatic conversio
 
 == Screenshots ==
 
-1. search_plugin
-2. woocommerce_settings
-3. payment_gateways_list
-4. clic_payment_settings
-5. dashboard_clic
+1. payment_gateways_list
+2. clic_payment_settings
+3. dashboard_clic
 
 == Changelog ==
 
