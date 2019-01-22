@@ -12,7 +12,10 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Clic payment is a cryptocurrency payment gateway with an instant and automatic conversion of a wide
- range of cryptocurrencies into Euro/USD.
+ range of cryptocurrencies into Euro/USD. That plugin is relying on a 3rd party as service (https://clictechnology.com)
+   and integrates js code which locate on clictechnology servers.
+   Terms and Conditions: https://www.clictechnology.com/terms-and-conditions
+   Privacy Policy: https://www.clictechnology.com/privacy-policy
 
 
 == Description ==
