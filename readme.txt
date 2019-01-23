@@ -6,7 +6,7 @@ Tags: cryptocurrency payment gateway, crypto payments, automatic cryptocurrency 
   low commission, biometrics service, smooth withdrawals
 Requires at least: 4.6
 Tested up to: 4.9
-Stable tag: 1.2.0
+Stable tag: 1.0.1
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -84,36 +84,22 @@ Clic is a cryptocurrency payment gateway with an instant and automatic conversio
 
 == Screenshots ==
 
-1. payment_gateways_list
-2. clic_payment_settings
-3. dashboard_clic
+1. Payment gateways list
+2. Clic payment settings
+3. Dashboard Clic
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 
 * Create plugin
 
-= 1.1.0 =
+= 1.0.0 =
 
-* Add "Response server URL" field
+* Update icon and description
 
-= 1.2.0 =
-
-* Added check of the amount of the order with the amount of payment
-
-== Upgrade Notice ==
-
-= 1.0 =
-
-* no upgrade yet
-
-= 1.1.0 =
-
-* Add "Response server URL" field
-
-= 1.2.0 =
-
-* Added check of the amount of the order with the amount of payment
 
 == Arbitrary section ==
+
+Terms and Conditions: https://www.clictechnology.com/terms-and-conditions
+Privacy Policy: https://www.clictechnology.com/privacy-policy
