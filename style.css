@@ -8,11 +8,11 @@
     bottom: 0;
     z-index: 2000; }
 
-#uswipe-badge {
+#clic-badge {
     position: relative;
     height: 100%;
 }
-div[class^="uswipe-widget"] {
+div[class^="clic-widget"] {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -24,11 +24,11 @@ div[class^="uswipe-widget"] {
     transform: translate(-50%, -50%);
     overflow: auto;
 }
-div[class^="uswipe-widget"] button {
+div[class^="clic-widget"] button {
     margin: 0;
     border-radius: 0;
 }
-#payment li.payment_method_iswipe label[for*="iswipe"] img {
+#payment li.payment_method_clic label[for*="clic"] img {
     max-width: 4em;
 }
 #btn-buy {
@@ -41,4 +41,11 @@ div[class^="uswipe-widget"] button {
 }
 #btn-buy:hover {
     background-color: #55eac0;
+}
+#btn-close {
+    position: absolute;
+    font-size: 48px;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
 }
